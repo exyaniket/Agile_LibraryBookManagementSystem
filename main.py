@@ -40,6 +40,40 @@ def return_book():
     library[book_id].is_borrowed=False
     print("book returned successfully")
 
-add_book()
-borrow_book()
-return_book()
+def generate_report():
+    if not library:
+        print("no books fpund in library")
+        return
+    print("library report")
+    print("-"*30)
+    print("| ID | Title | Author | status |")
+    print("-"*30)
+
+    for book in library.values():
+        status="borrowed" if book.is_borrowed else "available"
+        print(f"| {book.book_id} | {book.title} | {book.author} | {status} |")
+
+
+def menu():
+    while True:
+        print("\n Library Management System")
+        print("1. Add Book \n2. Borrow book \n3. return book \n4. generate report \n5. exit")
+        choice=input("enter your choice : ")
+        if choice == "1":
+            add_book()
+        elif choice == "2":
+            return_book()
+        elif choice == "3":
+            return_book()
+        elif choice=="4":
+            generate_report()
+        elif choice == "5":
+            print("exiting...")
+            break
+        else:
+            print("invalid choice")
+
+
+
+
+menu()
